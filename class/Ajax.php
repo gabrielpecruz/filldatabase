@@ -33,14 +33,21 @@ abstract class Ajax
         //Pega o nome da função via GET
         $this->function = $_GET['function'];
 
-        //Pega os parâmetros via POST
-        $this->params   = $_POST['params'];
+        //Só prepara os parâmetros e existir parâmetros
+        if (isset($_POST['params'])) {
+            //Pega os parâmetros via POST
+            $this->params   = $_POST['params'];
 
-        //Prepara a chamada da função
-        $this->functionPrepare();
+            //Prepara a chamada da função
+            $this->functionPrepare();
 
-        //Chama a função de fato
-        $this->{$this->function}($this->params);
+            //Chama a função de fato
+            $this->{$this->function}($this->params);
+        } else {
+
+            //Chama a função de fato
+            $this->{$this->function}();
+        }
     }
 
     /**

@@ -9,10 +9,18 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . "class/Ajax.php";
 
 /**
- * Class CamposAjax
+ * Class TabelasAjax
  */
-class CamposAjax extends Ajax
+class TabelasAjax extends Ajax
 {
+
+    public function ajaxTabelas()
+    {
+        $tabelas = Consulta::retorna_tabelas();
+
+        echo json_encode($tabelas);
+    }
+
     /**
      * @param $tabela
      */
@@ -24,4 +32,4 @@ class CamposAjax extends Ajax
     }
 }
 
-$ajax = new CamposAjax();
+$ajax = new TabelasAjax();

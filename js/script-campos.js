@@ -4,7 +4,7 @@ $(document).ready(function () {
 
        $.ajax({
            type: "POST",
-           url: 'class/CamposAjax.php?function=ajaxCampos',
+           url: 'class/TabelasAjax.php?function=ajaxCampos',
            data: {'params' : {
                     $tabela
                  }
@@ -61,10 +61,11 @@ function criarSelect($nomeCampo) {
     return $select;
 }
 
-function criarOption() {
+function criarOption($nome = "teste") {
     //Option
     $option = $("<option>");
-    $option.text("teste")
+    $option.text($nome)
+    $option.attr("value", $nome)
 
     return $option;
 }

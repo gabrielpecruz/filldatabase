@@ -80,6 +80,7 @@ if((isset($_POST['host'])       && $_POST['host']       != "") &&
 
 	if($conexao){
 		$_SESSION['sucesso'] = "sucesso";
+		$_COOKIE['sucesso'] = "sucesso";
 		$_SESSION['banco']   = $db_name;
 		$_SESSION['usuario'] = $db_user;
 		$_SESSION['senha']   = $db_password;

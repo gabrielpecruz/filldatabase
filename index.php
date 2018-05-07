@@ -78,15 +78,10 @@
                             <form action="">
                                 <div class="col-md-4">
                                     <div class="form-row">
-                                        <label for="">Tabela</label>
-                                        <?php if (isset($_SESSION['sucesso'])) $tabelas = Consulta::retorna_tabelas(); ?>
+                                        <label for="">Tabelas</label>
                                         <select class="form-control" name="tabelas" id="tabelas">
                                             <option class="form-control"
                                                     value=""></option>
-                                            <?php foreach ($tabelas as $tabela): ?>
-                                                <option class="form-control"
-                                                        value="<?php echo $tabela ?>"><?php echo $tabela ?></option>
-                                            <?php endforeach ?>
                                         </select>
                                     </div>
                                 </div>
@@ -112,7 +107,8 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
                     integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
                     crossorigin="anonymous"></script>
-            <script src="js/script.js"></script>
+            <script src="js/script-campos.js"></script>
+            <script src="js/script-tabelas.js"></script>
 </body>
 </html>
 
