@@ -1,6 +1,6 @@
 <?php
 
-require_once "global.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . "global.php";
 
 
 
@@ -35,7 +35,6 @@ class Consulta{
                 array_push($campos, $campo['Field']);
             }
         }
-
         return $campos;
 
     }

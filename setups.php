@@ -73,6 +73,7 @@ if((isset($_POST['host'])       && $_POST['host']       != "") &&
 	try{
 		$conexao = Conexao::pegarConexao();
 	} catch( Exception $e){
+	    throw new Exception( $e);
 		$_SESSION['erro-conexao'] = "erro-conexao";
 	}
 	
