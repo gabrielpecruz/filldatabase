@@ -11,6 +11,9 @@ $(document).ready(function () {
                },
            success: function (data) {
                var obj = $.parseJSON(data);
+
+               $("#campos").html("");
+
                $(obj).each(function ($a) {
 
                    criarCampo(obj[$a]);
@@ -37,7 +40,7 @@ function criarCampo($nomeCampo) {
 function criarDiv() {
     //Div
     $div = $("<div>");
-    $div.attr("class", "form-group col-md-2 float-left");
+    $div.attr("class", "form-group col-md-3 float-left");
 
     return $div;
 }
@@ -53,7 +56,7 @@ function criarLabel($nomeCampo) {
 function criarSelect($nomeCampo) {
     //Select
     $select = $("<select>");
-    $select.attr("class", "form-control col-md-12 ");
+    $select.attr("class", "form-control");
     $select.attr("name", $nomeCampo);
 
     $select.append(criarOption());
