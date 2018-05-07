@@ -4,8 +4,11 @@ $(document).ready(function () {
 
        $.ajax({
            type: "POST",
-           url: 'class/Ajax.php?ajaxCampos(' + $tabela + ')',
-           data: {'tabela' : $tabela},
+           url: 'class/CamposAjax.php?function=ajaxCampos',
+           data: {'params' : {
+                    $tabela
+                 }
+               },
            success: function (data) {
                var obj = $.parseJSON(data);
                $(obj).each(function ($a) {

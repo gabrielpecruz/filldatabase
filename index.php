@@ -82,7 +82,7 @@
                                         <?php if (isset($_SESSION['sucesso'])) $tabelas = Consulta::retorna_tabelas(); ?>
                                         <select class="form-control" name="tabelas" id="tabelas">
                                             <option class="form-control"
-                                                    value="">default</option>
+                                                    value=""></option>
                                             <?php foreach ($tabelas as $tabela): ?>
                                                 <option class="form-control"
                                                         value="<?php echo $tabela ?>"><?php echo $tabela ?></option>
