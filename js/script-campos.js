@@ -48,7 +48,7 @@ function criarDiv() {
 function criarLabel($nomeCampo) {
     //Label
     $label = $("<label>");
-    $label.text($nomeCampo);
+    $label.text($nomeCampo['campo']);
 
     return $label;
 }
@@ -57,9 +57,9 @@ function criarSelect($nomeCampo) {
     //Select
     $select = $("<select>");
     $select.attr("class", "form-control");
-    $select.attr("name", $nomeCampo);
+    $select.attr("name", $nomeCampo['campo']);
 
-    $select.append(criarOption());
+    $select.append(criarOption($nomeCampo['tipo']));
 
     return $select;
 }

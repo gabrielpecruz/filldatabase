@@ -6,7 +6,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . "global.php";
 
 class Consulta{
 
-    public static function retorna_tabelas(){
+    public static function retorna_tabelas()
+    {
 
         $query = "show tables";
         $conexao = Conexao::pegarConexao();
@@ -22,22 +23,51 @@ class Consulta{
         return $tabelas;
     }
 
-    public static function retorna_campos($tabela){
+    public static function retorna_campos($tabela)
+    {
 
         $conexao = Conexao::pegarConexao();
         $query = "desc $tabela";
         $results = $conexao->query($query);
         
-        $campos = array();
+        $campo_info = array();
 
         foreach($results as $key => $campo){
             if(!$campo['Key'] == "PRI"){
-                array_push($campos, $campo['Field']);
+                $array = array();
+
+                $array['campo'] = $campo['Field'];
+                $array['tipo']  = $campo['Type'];
+
+                array_push($campo_info, $array);
             }
         }
-        return $campos;
+        return $campo_info;
 
     }
-    
+
+    public static function retorna_tabelas_info($tabelas)
+    {
+        $conexao = Conexao::pegarConexao();
+
+        $tabelas_info = array();
+
+        foreach ($tabelas as $tabela) {
+            $query = "desc $tabela";
+            $results = $conexao->query($query);
+            foreach ($results as $key => $campo) {
+                if ($key == 'Type') {
+                    $array = array();
+
+                    $array["tabela"] = $tabela;
+                    $array["tipo"]   = $campo['Type'];
+
+                    array_push($tabelas_info, $array);
+                }
+            }
+        }
+
+        return $tabelas_info;
+    }
 
 }

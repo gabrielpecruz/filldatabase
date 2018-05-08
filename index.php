@@ -10,6 +10,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+
 </head>
 <body>
 
@@ -76,8 +79,8 @@
                 <h3>Montagem da Query</h3>
             </div>
             <div class="col-md-6">
-                <span class="btn btn-primary btn-sm float-right ml-1"">Fill Database</span>
-                <span class="btn btn-primary btn-sm float-right ml-1s">Gerar Script</span>
+                <span class="btn btn-primary btn-sm float-right ml-1""><i class="fas fa-sync-alt"></i> Fill Database</span>
+                <span class="btn btn-primary btn-sm float-right ml-1s"><i class="fas fa-sync-alt"></i> Gerar Script</span>
             </div>
         </div>
 
