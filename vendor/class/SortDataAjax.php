@@ -19,8 +19,7 @@ class SortDataAjax extends Ajax
 
     private $types;
 
-
-
+    //Prepara as coisas antes de executar tudo
     public function __construct(){
 
         $this->faker = Factory::create();
@@ -32,6 +31,7 @@ class SortDataAjax extends Ajax
         parent::__construct();
     }
 
+    //Método genérico
     public function fillDataBase($colunas)
     {
         //Trasnforma o Json em array
@@ -42,6 +42,7 @@ class SortDataAjax extends Ajax
 
     }
 
+    //Prepara o insert
     private function insertPrepare($dados)
     {
         //Trata os dados para um array
@@ -85,6 +86,7 @@ class SortDataAjax extends Ajax
 
     }
 
+    //Deixa o array mais organizado com map
     private function dataTrate(&$data)
     {
         //Inicializa os arrays de colunas e valores
@@ -106,12 +108,14 @@ class SortDataAjax extends Ajax
         array_push($data, $colunas);
     }
 
+    //tudo pra minúsculo e depois chama outra função
     private function gerarDado($tipoDado)
     {
         $tipo = strtolower($tipoDado);
         return $this->getDado($tipo);
     }
 
+    //Gera um dado de acordo com o tipo passado
     private function getDado($tipo)
     {
       return $this->types[$tipo];
