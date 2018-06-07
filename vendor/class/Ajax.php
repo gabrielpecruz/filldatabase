@@ -64,18 +64,25 @@ abstract class Ajax
             $temp .= " $param,";
         }
 
+        $params = $this->trataVirgula($temp);
+
+        //Por fim armazena os parâmetros em $this->params
+        $this->params = $params;
+    }
+
+    public function trataVirgula($string)
+    {
         //Procura a posição da última ocorrência da vírgula
-        $last = strripos($temp, ",");
+        $last = strripos($string, ",");
 
         //Onde ficarão os parâmetros
         $params = "";
 
         //Verifica se a última posição é de fato uma vírgula. Se sim, põe a string sem a vírgula em $params
-        if ($temp[$last] === ',') {
-            $params = substr($temp, 0, $last);
+        if ($string[$last] === ',') {
+            $params = substr($string, 0, $last);
         }
 
-        //Por fim armazena os parâmetros em $this->params
-        $this->params = $params;
+        return $params;
     }
 }

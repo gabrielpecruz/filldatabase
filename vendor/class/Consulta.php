@@ -17,7 +17,7 @@ class Consulta{
         $tabelas = array();
 
         foreach($resultado as $key => $tabela){
-            array_push($tabelas, $tabela['Tables_in_'. DB_DATABASE]);
+            array_push($tabelas, $tabela['Tables_in_filldatabase']);
         }
 
         return $tabelas;

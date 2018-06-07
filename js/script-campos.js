@@ -4,13 +4,13 @@ $(document).ready(function () {
 
        $.ajax({
            type: "POST",
-           url: 'class/TabelasAjax.php?function=ajaxCampos',
+           url: 'vendor/class/TabelasAjax.php?function=ajaxCampos',
            data: {'params' : {
                     $tabela
                  }
                },
            success: function (data) {
-               var obj = $.parseJSON(data);
+               let obj = $.parseJSON(data);
 
                $("#campos").html("");
 
@@ -26,9 +26,9 @@ $(document).ready(function () {
 
 function criarCampo($nomeCampo) {
 
-    $div = criarDiv();
-    $label = criarLabel($nomeCampo);
-    $select = criarSelect($nomeCampo);
+    let $div = criarDiv();
+    let $label = criarLabel($nomeCampo);
+    let $select = criarSelect($nomeCampo);
 
 
     $div.append($label);
@@ -39,7 +39,8 @@ function criarCampo($nomeCampo) {
 
 function criarDiv() {
     //Div
-    $div = $("<div>");
+    let $div = $("<div>");
+
     $div.attr("class", "form-group col-md-3 float-left");
 
     return $div;
@@ -47,7 +48,8 @@ function criarDiv() {
 
 function criarLabel($nomeCampo) {
     //Label
-    $label = $("<label>");
+    let $label = $("<label>");
+
     $label.text($nomeCampo['campo']);
 
     return $label;
@@ -55,9 +57,11 @@ function criarLabel($nomeCampo) {
 
 function criarSelect($nomeCampo) {
     //Select
-    $select = $("<select>");
+    let $select = $("<select>");
+
     $select.attr("class", "form-control");
     $select.attr("name", $nomeCampo['campo']);
+    $select.attr("id", $nomeCampo['campo']);
 
     $select.append(criarOption($nomeCampo['tipo']));
 
@@ -66,7 +70,8 @@ function criarSelect($nomeCampo) {
 
 function criarOption($nome = "teste") {
     //Option
-    $option = $("<option>");
+    let $option = $("<option>");
+
     $option.text($nome)
     $option.attr("value", $nome)
 

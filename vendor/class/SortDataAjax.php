@@ -8,10 +8,29 @@
 
 namespace FillDataBase;
 
+use Faker\Factory;
+
 require_once '../autoload.php';
 
 class SortDataAjax extends Ajax
 {
+
+    private $faker;
+
+    private $types;
+
+
+
+    public function __construct(){
+
+        $this->faker = Factory::create();
+
+        $this->types = [
+            "varchar(255)" => $this->faker->name(),
+        ];
+
+        parent::__construct();
+    }
 
     public function fillDataBase($colunas)
     {
@@ -23,54 +42,82 @@ class SortDataAjax extends Ajax
 
     }
 
-    private function insertPrepare($colunas)
+    private function insertPrepare($dados)
     {
+        //Trata os dados para um array
+        $this->dataTrate($dados);
 
-        $this->dataTrate($colunas);
 
         //INSERT INTO $tabela ($campo1, ... ) VALUES ($item1, ...)
-//        $colunas = [];
-//        $valores = [];
-//
-//        foreach ($colunas as $coluna) {
-//
-//            array_push($colunas, $coluna['nomeColuna']);
-//            array_push($valores, $coluna['tipoColuna']);
-////            $coluna['coluna'], ... ) VALUES ($coluna['coluna'], ...)
-//        }
-//
-//        $inserts = "INSERT INTO tabela (";
-//
-//        foreach ($colunas as $coluna) {
-//
-//            $coluna['coluna'], ... ) VALUES ($coluna['coluna'], ...)
-//        }
-//        exit;
+        $insert = "INSERT INTO filldatabase (";
+
+        //Gera a primeira parte do INSERT
+        $cols = "";
+        foreach ($dados as $key => $colunas) {
+            foreach ($colunas as $coluna) {
+                $cols .= " " . $coluna['nome'] . ",";
+            }
+        }
+
+        //Remove a última vírgula das colunas
+        $insert .= $this->trataVirgula($cols);
+
+        $insert .= ") VALUES (";
+
+        //Gera os dados de fato usando o \Faker
+        $vals = "";
+        foreach ($dados as $key => $colunas) {
+            foreach ($colunas as $coluna) {
+
+                $dado = $this->gerarDado($coluna['valor']);
+
+                $vals .= " " . $dado . ",";
+            }
+        }
+
+        //Remove a última vírgula dos valores
+        $insert .= $this->trataVirgula($vals);
+
+        $insert .= ")";
+
+
+        var_dump($insert);exit;
+
     }
 
-    private function dataTrate($data)
+    private function dataTrate(&$data)
     {
-        //Cria o objeto da biblioteca Faker
-
-        $faker = Faker\Factory::create();
-
         //Inicializa os arrays de colunas e valores
         $colunas = [];
 
-        foreach ($data as $coluna) {
-            $coluna = [];
+        foreach ($data as $columns) {
+            foreach ($columns as $column) {
 
-            array_push($coluna['coluna'], $coluna['nomeColuna']);
-            array_push($coluna['valor'] , $coluna['tipoColuna']);
+                $coluna = [
+                    'nome' => $column->nomeColuna,
+                    'valor' => $column->tipoColuna
+                ];
 
-            array_push($colunas, $coluna);
+                array_push($colunas, $coluna);
+            }
         }
 
-        var_dump($colunas);exit;
-
+        $data = [];
+        array_push($data, $colunas);
     }
 
-    private static $dataType = array('int', 'varchar');
+    private function gerarDado($tipoDado)
+    {
+        $tipo = strtolower($tipoDado);
+        return $this->getDado($tipo);
+    }
+
+    private function getDado($tipo)
+    {
+      return $this->types[$tipo];
+    }
+
+
 }
 
 $ajax = new SortDataAjax();

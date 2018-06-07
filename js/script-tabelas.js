@@ -2,10 +2,10 @@ $(document).ready(function () {
 
        $.ajax({
            type: "POST",
-           url: 'class/TabelasAjax.php?function=ajaxTabelas',
+           url: 'vendor/class/TabelasAjax.php?function=ajaxTabelas',
            success: function (data) {
                if (data) {
-                   var obj = $.parseJSON(data);
+                   let obj = $.parseJSON(data);
                    $(obj).each(function ($a) {
 
                        preecherCampo("#tabelas", obj[$a]);

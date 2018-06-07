@@ -1,6 +1,6 @@
-<?php require_once "global.php" ?>
+<?php require_once "vendor/autoload.php" ?>
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Gerador de Scripts SQL</title>
     <!-- Required meta tags -->
@@ -79,8 +79,8 @@
                 <h3>Montagem da Query</h3>
             </div>
             <div class="col-md-6">
-                <span class="btn btn-primary btn-sm float-right ml-1""><i class="fas fa-sync-alt"></i> Fill Database</span>
-                <span class="btn btn-primary btn-sm float-right ml-1s"><i class="fas fa-sync-alt"></i> Gerar Script</span>
+                <button  type="submit" id="filldatabase" class="btn btn-primary btn-sm float-right ml-1"><i class="fas fa-sync-alt"></i> Fill Database</button>
+                <button type="submit" class="btn btn-primary btn-sm float-right ml-1s"><i class="fas fa-sync-alt"></i> Gerar Script</button>
             </div>
         </div>
 
@@ -120,6 +120,8 @@
             crossorigin="anonymous"></script>
     <script src="js/script-campos.js"></script>
     <script src="js/script-tabelas.js"></script>
+    <script src="js/filldatabase.js"></script>
+    <script src="js/config.js"></script>
 
 </body>
 </html>
