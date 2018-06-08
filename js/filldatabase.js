@@ -50,7 +50,7 @@ function fillDatabase($json) {
             }
         },
         success: function (data) {
-            alert("sucesso")
+            console.log("sucesso")
         }
     });
 }

@@ -15,4 +15,12 @@ class Conexao{
            throw new \Exception($e);
         }
     }
+
+    public static function insert($sql)
+    {
+        $con = Conexao::pegarConexao();
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+    }
+
 }

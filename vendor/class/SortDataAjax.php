@@ -26,6 +26,7 @@ class SortDataAjax extends Ajax
 
         $this->types = [
             "varchar(255)" => $this->faker->name(),
+            "int(2)" => $this->faker->numberBetween(0,80)
         ];
 
         parent::__construct();
@@ -48,9 +49,8 @@ class SortDataAjax extends Ajax
         //Trata os dados para um array
         $this->dataTrate($dados);
 
-
         //INSERT INTO $tabela ($campo1, ... ) VALUES ($item1, ...)
-        $insert = "INSERT INTO filldatabase (";
+        $insert = "INSERT INTO pessoa (";
 
         //Gera a primeira parte do INSERT
         $cols = "";
@@ -63,7 +63,7 @@ class SortDataAjax extends Ajax
         //Remove a última vírgula das colunas
         $insert .= $this->trataVirgula($cols);
 
-        $insert .= ") VALUES (";
+        $insert .= " ) VALUES ( ";
 
         //Gera os dados de fato usando o \Faker
         $vals = "";
@@ -72,18 +72,17 @@ class SortDataAjax extends Ajax
 
                 $dado = $this->gerarDado($coluna['valor']);
 
-                $vals .= " " . $dado . ",";
+                $vals .= " '" . $dado . "',";
             }
         }
 
         //Remove a última vírgula dos valores
         $insert .= $this->trataVirgula($vals);
 
-        $insert .= ")";
+        $insert .= " )";
 
 
-        var_dump($insert);exit;
-
+        Conexao::insert($insert);
     }
 
     //Deixa o array mais organizado com map
